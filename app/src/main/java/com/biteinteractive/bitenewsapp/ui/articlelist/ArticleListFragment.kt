@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.biteinteractive.bitenewsapp.R
@@ -72,6 +73,13 @@ class ArticleListFragment : Fragment() {
             )
         }
 
+        articlesAdapter.itemClickListener = {
+            findNavController().navigate(
+                ArticleListFragmentDirections.actionNewsListFragmentToNewsDetailFragment(
+                    it
+                )
+            )
+        }
     }
 
     private fun initiateViewModel() {
@@ -87,7 +95,6 @@ class ArticleListFragment : Fragment() {
             when (resource) {
                 is Resource.Loading -> {
                     progressBar.visibility = VISIBLE
-                    progressBar.visibility = GONE
                 }
                 is Resource.Failure -> {
                     progressBar.visibility = GONE

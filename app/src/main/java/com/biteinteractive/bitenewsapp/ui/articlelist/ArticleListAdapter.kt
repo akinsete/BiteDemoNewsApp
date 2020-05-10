@@ -10,7 +10,10 @@ import com.biteinteractive.bitenewsapp.util.loadImage
 import kotlinx.android.synthetic.main.article_list_item.view.*
 
 
-class ArticleListAdapter(var articles: ArrayList<ArticleItem>) :
+class ArticleListAdapter(
+    var articles: ArrayList<ArticleItem>,
+    var itemClickListener: ((ArticleItem) -> Unit)? = null
+) :
     RecyclerView.Adapter<ArticleListAdapter.ArticleListAdapterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ArticleListAdapterViewHolder(
@@ -30,7 +33,12 @@ class ArticleListAdapter(var articles: ArrayList<ArticleItem>) :
     }
 
     override fun onBindViewHolder(holder: ArticleListAdapterViewHolder, position: Int) {
-        holder.bind(articles[position])
+        val item = articles[position]
+
+        holder.bind(item)
+        holder.itemView.setOnClickListener {
+            itemClickListener?.invoke(item)
+        }
     }
 
 
@@ -38,6 +46,7 @@ class ArticleListAdapter(var articles: ArrayList<ArticleItem>) :
 
         private val articleThumbnail = view.icon
         private val articleTitle = view.title
+        private val articleSection = view.section
 
         fun bind(article: ArticleItem) {
             article.getThumbnail().let {
@@ -45,6 +54,7 @@ class ArticleListAdapter(var articles: ArrayList<ArticleItem>) :
             }
 
             articleTitle.text = article.title
+            articleSection.text = article.section
         }
     }
 

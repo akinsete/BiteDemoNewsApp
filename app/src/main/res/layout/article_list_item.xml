@@ -11,21 +11,33 @@
         android:id="@+id/icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="10dp"
         android:background="@color/colorGrey"
         android:scaleType="centerCrop"
+        android:layout_marginEnd="10dp"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/title"
+        android:layout_toEndOf="@id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/icon"
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:textColor="@color/colorBlack"
         android:textSize="16sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_toEndOf="@id/icon"
+        android:background="@color/colorDarkGrey"
+        android:gravity="start"
+        android:padding="4dp"
+        android:textColor="@color/colorWhite" />
+
 
 </RelativeLayout>
