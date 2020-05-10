@@ -23,4 +23,10 @@ data class ArticleItem(
     @SerializedName("geo_facet") val geo_facet: List<String>,
     @SerializedName("multimedia") val multimedia: List<Multimedia>,
     @SerializedName("short_url") val short_url: String
-) : Serializable
+) : Serializable {
+    fun getThumbnail(): String? {
+        return multimedia.let {
+            it[0]
+        }.url
+    }
+}

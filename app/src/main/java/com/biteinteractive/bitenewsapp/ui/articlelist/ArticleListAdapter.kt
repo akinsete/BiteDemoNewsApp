@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.biteinteractive.bitenewsapp.R
 import com.biteinteractive.bitenewsapp.data.ArticleItem
+import com.biteinteractive.bitenewsapp.util.loadImage
+import kotlinx.android.synthetic.main.article_list_item.view.*
 
 
 class ArticleListAdapter(var articles: ArrayList<ArticleItem>) :
@@ -34,15 +36,15 @@ class ArticleListAdapter(var articles: ArrayList<ArticleItem>) :
 
     class ArticleListAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        //        private val countryName = view.name
-//        private val imageView = view.imageView
-//        private val countryCapital = view.capital
-//        private val progressDrawable  = getProgressDrawable(view.context)
-//
+        private val articleThumbnail = view.icon
+        private val articleTitle = view.title
+
         fun bind(article: ArticleItem) {
-//            countryName.text = country.countryName
-//            countryCapital.text = country.capital
-//            imageView.loadImage(country.flag,progressDrawable)
+            article.getThumbnail().let {
+                articleThumbnail.loadImage(it.toString())
+            }
+
+            articleTitle.text = article.title
         }
     }
 

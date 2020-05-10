@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.biteinteractive.bitenewsapp.R
 import com.biteinteractive.bitenewsapp.data.Resource
@@ -63,7 +64,14 @@ class ArticleListFragment : Fragment() {
         articleRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = articlesAdapter
+            addItemDecoration(
+                DividerItemDecoration(
+                    context,
+                    LinearLayoutManager.VERTICAL
+                )
+            )
         }
+
     }
 
     private fun initiateViewModel() {
