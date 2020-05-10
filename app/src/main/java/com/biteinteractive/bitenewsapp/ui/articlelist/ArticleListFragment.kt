@@ -79,6 +79,7 @@ class ArticleListFragment : Fragment() {
             when (resource) {
                 is Resource.Loading -> {
                     progressBar.visibility = VISIBLE
+                    progressBar.visibility = GONE
                 }
                 is Resource.Failure -> {
                     progressBar.visibility = GONE
@@ -86,7 +87,7 @@ class ArticleListFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     progressBar.visibility = GONE
-                    loadingError.visibility = VISIBLE
+                    loadingError.visibility = GONE
                     resource.data?.let {
                         articlesAdapter.updateArticles(it)
                     }

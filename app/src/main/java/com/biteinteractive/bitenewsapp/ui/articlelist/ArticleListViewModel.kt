@@ -31,6 +31,7 @@ class ArticleListViewModel : ViewModel() {
 
 
     fun refresh() {
+        print("DaggerViewModelComponent")
         articles.value = Resource.Loading()
         disposable.add(
             articleService.getHomeArticles().subscribeOn(Schedulers.newThread())
@@ -38,7 +39,7 @@ class ArticleListViewModel : ViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<ArticleResponse>() {
                     override fun onSuccess(articleResponse: ArticleResponse) {
                         articles.value = Resource.Success(articleResponse.results)
-                        print("value")
+                        print("DaggerViewModelComponent")
                     }
 
                     override fun onError(e: Throwable?) {

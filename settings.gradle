@@ -1,0 +1,2 @@
+rootProject.name='BiteNewsApp'
+include ':app'
