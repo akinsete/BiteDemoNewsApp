@@ -9,8 +9,8 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.biteinteractive.bitenewsapp.R
@@ -24,10 +24,10 @@ import kotlinx.android.synthetic.main.fragment_article_list.*
  */
 class ArticleListFragment : Fragment() {
 
-    private lateinit var viewModel: ArticleListViewModel
 
     private lateinit var mainActivityDelegate: MainActivityDelegate
     private var articlesAdapter: ArticleListAdapter = ArticleListAdapter(arrayListOf())
+    private val viewModel: ArticleListViewModel by navGraphViewModels(R.id.nav_graph)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -58,7 +58,7 @@ class ArticleListFragment : Fragment() {
 
         initiateRecyclerView()
 
-        initiateViewModel()
+        initiateArticlesViewModel()
     }
 
     private fun initiateRecyclerView() {
@@ -82,9 +82,7 @@ class ArticleListFragment : Fragment() {
         }
     }
 
-    private fun initiateViewModel() {
-        viewModel = ViewModelProviders.of(this).get(ArticleListViewModel::class.java)
-
+    private fun initiateArticlesViewModel() {
         observeViewModel()
 
         viewModel.refresh()
