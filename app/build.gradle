@@ -29,10 +29,14 @@ android {
         targetCompatibility = "8"
         sourceCompatibility = "8"
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
-def daggerVersion = '2.13'
-def rxJavaVersion = '2.0.1'
+def daggerVersion = '2.24'
+def rxJavaVersion = '2.1.1'
 def retrofitVersion = '2.5.0'
 def glideVersion = '4.11.0'
 

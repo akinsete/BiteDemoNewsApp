@@ -14,9 +14,6 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ArticleListViewModel : ViewModel() {
-    companion object {
-        private const val PAGE_SIZE = 100
-    }
 
     @Inject
     lateinit var articleService: ArticleService
@@ -29,9 +26,7 @@ class ArticleListViewModel : ViewModel() {
         DaggerViewModelComponent.create().inject(this)
     }
 
-
     fun refresh() {
-        print("DaggerViewModelComponent")
         articles.value = Resource.Loading()
         disposable.add(
             articleService.getHomeArticles().subscribeOn(Schedulers.newThread())
@@ -39,13 +34,11 @@ class ArticleListViewModel : ViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<ArticleResponse>() {
                     override fun onSuccess(articleResponse: ArticleResponse) {
                         articles.value = Resource.Success(articleResponse.results)
-                        print("DaggerViewModelComponent")
                     }
 
-                    override fun onError(e: Throwable?) {
+                    override fun onError(e: Throwable) {
                         articles.value = Resource.Failure(e.toString())
                     }
-
                 })
         )
     }

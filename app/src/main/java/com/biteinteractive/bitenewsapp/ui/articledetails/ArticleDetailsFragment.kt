@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.biteinteractive.bitenewsapp.R
 import com.biteinteractive.bitenewsapp.ui.MainActivityDelegate
+import com.biteinteractive.bitenewsapp.util.loadImage
 import kotlinx.android.synthetic.main.fragment_article_detail.*
 
 /**
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_article_detail.*
 class ArticleDetailsFragment : Fragment() {
 
     private lateinit var mainActivityDelegate: MainActivityDelegate
+    private val mainActivityArgs by navArgs<ArticleDetailsFragmentArgs>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -37,10 +40,22 @@ class ArticleDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        displayArticleItem()
+    }
+
+    private fun displayArticleItem() {
+        val article = mainActivityArgs.articleItem
+        article.getThumbnail().let {
+            articleBanner.loadImage(it.toString())
+        }
+        articleTitle.text = article.title
+        articleAbstract.text = article.abstract
+
+
         mainActivityDelegate.setupToolbar(
             articleDetailToolBar,
             titleResId = null,
-            titleString = "Article Details",
+            titleString = article.title,
             backEnabled = true
         )
     }

@@ -1,10 +1,9 @@
 package com.biteinteractive.bitenewsapp.ui
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
 import com.biteinteractive.bitenewsapp.R
 
 class MainActivity : AppCompatActivity(), MainActivityDelegate {
@@ -25,10 +24,7 @@ class MainActivity : AppCompatActivity(), MainActivityDelegate {
         supportActionBar?.setDisplayHomeAsUpEnabled(backEnabled)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> findNavController(item.itemId).popBackStack()
-        }
-        return super.onOptionsItemSelected(item)
+    override fun onSupportNavigateUp(): Boolean {
+        return Navigation.findNavController(this, R.id.container).navigateUp()
     }
 }
