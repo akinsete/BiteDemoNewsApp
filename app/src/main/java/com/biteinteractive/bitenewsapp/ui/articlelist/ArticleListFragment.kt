@@ -27,7 +27,6 @@ class ArticleListFragment : Fragment() {
     private lateinit var viewModel: ArticleListViewModel
 
     private lateinit var mainActivityDelegate: MainActivityDelegate
-
     private var articlesAdapter: ArticleListAdapter = ArticleListAdapter(arrayListOf())
 
     override fun onAttach(context: Context) {

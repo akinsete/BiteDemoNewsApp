@@ -39,6 +39,7 @@ def daggerVersion = '2.24'
 def rxJavaVersion = '2.1.1'
 def retrofitVersion = '2.5.0'
 def glideVersion = '4.11.0'
+def mockitoVersion = '2.11.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -73,6 +74,9 @@ dependencies {
 
 
     testImplementation 'junit:junit:4.13'
+    testImplementation "android.arch.core:core-testing:1.1.1"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+
 }

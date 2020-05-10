@@ -21,7 +21,6 @@ class ArticleListViewModel : ViewModel() {
 
     val articles = MutableLiveData<Resource<List<ArticleItem>>>()
 
-    //initializing the necessary components and classes
     init {
         DaggerViewModelComponent.create().inject(this)
     }
@@ -33,7 +32,9 @@ class ArticleListViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<ArticleResponse>() {
                     override fun onSuccess(articleResponse: ArticleResponse) {
-                        articles.value = Resource.Success(articleResponse.results)
+                        articleResponse.results?.let {
+                            articles.value = Resource.Success(it)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
