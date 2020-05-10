@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/newsListFragment">
+
+    <fragment
+        android:id="@+id/newsListFragment"
+        android:name="com.biteinteractive.bitenewsapp.ui.articlelist.ArticleListFragment"
+        android:label="fragment_news_list"
+        tools:layout="@layout/fragment_article_list">
+        <action
+            android:id="@+id/action_newsListFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/newsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.biteinteractive.bitenewsapp.ui.articledetails.ArticleDetailsFragment"
+        android:label="fragment_news_detail"
+        tools:layout="@layout/fragment_article_detail">
+
+        <argument
+            android:name="articleItem"
+            app:argType="com.biteinteractive.bitenewsapp.data.ArticleItem"
+            app:nullable="false" />
+
+    </fragment>
+</navigation>
