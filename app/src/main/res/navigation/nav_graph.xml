@@ -28,5 +28,11 @@
             app:argType="com.biteinteractive.bitenewsapp.data.ArticleItem"
             app:nullable="false" />
 
+        <action
+            android:id="@+id/navigateBack"
+            app:destination="@id/newsListFragment"
+            app:popUpTo="@+id/newsListFragment"
+            app:popUpToInclusive="true" />
+
     </fragment>
 </navigation>

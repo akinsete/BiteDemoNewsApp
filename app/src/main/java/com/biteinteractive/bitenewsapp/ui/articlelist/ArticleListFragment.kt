@@ -53,6 +53,7 @@ class ArticleListFragment : Fragment() {
         mainActivityDelegate.setupToolbar(
             toolbar = articleToolBar,
             titleResId = R.string.articles,
+            titleString = null,
             backEnabled = false
         )
 

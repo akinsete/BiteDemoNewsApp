@@ -1,16 +1,30 @@
 package com.biteinteractive.bitenewsapp.ui.articledetails
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.biteinteractive.bitenewsapp.R
+import com.biteinteractive.bitenewsapp.ui.MainActivityDelegate
+import kotlinx.android.synthetic.main.fragment_article_detail.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class ArticleDetailsFragment : Fragment() {
+
+    private lateinit var mainActivityDelegate: MainActivityDelegate
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            mainActivityDelegate = context as MainActivityDelegate
+        } catch (e: ClassCastException) {
+            throw ClassCastException()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,4 +34,14 @@ class ArticleDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_article_detail, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mainActivityDelegate.setupToolbar(
+            articleDetailToolBar,
+            titleResId = null,
+            titleString = "Article Details",
+            backEnabled = true
+        )
+    }
 }

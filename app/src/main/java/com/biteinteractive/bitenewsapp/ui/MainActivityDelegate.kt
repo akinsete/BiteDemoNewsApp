@@ -4,5 +4,5 @@ import androidx.appcompat.widget.Toolbar
 
 
 interface MainActivityDelegate {
-    fun setupToolbar(toolbar: Toolbar, titleResId: Int, backEnabled: Boolean)
+    fun setupToolbar(toolbar: Toolbar, titleResId: Int?, titleString: String?, backEnabled: Boolean)
 }
