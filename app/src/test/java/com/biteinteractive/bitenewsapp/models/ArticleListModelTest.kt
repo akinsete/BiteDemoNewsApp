@@ -56,6 +56,11 @@ class ArticleListModelTest {
 
         articleListViewModel.refresh()
 
+        Assert.assertThat(
+            articleListViewModel.articles.value,
+            instanceOf(Resource.Success::class.java)
+        )
+
         Assert.assertEquals(1, articleListViewModel.articles.value?.data?.size)
     }
 
